@@ -11,6 +11,7 @@ class ImagePdfApi {
 
     final pageTheme = PageTheme(
       pageFormat: PdfPageFormat.a4,
+      margin: EdgeInsets.only(left: 0, top: 0, right: 0, bottom: 0),
     );
     for (var path in _paths) {
       Uint8List image1 = await File(path).readAsBytes();
