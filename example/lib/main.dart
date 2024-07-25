@@ -46,8 +46,7 @@ class _MyAppState extends State<MyApp> {
           for (var picture in _pictures) Text(picture),
           ElevatedButton(
               onPressed: () async {
-                final imagePdf =
-                    await ImagePdfApi.generateImagePdf(_pictures[0]);
+                final imagePdf = await ImagePdfApi.generateImagePdf(_pictures);
               },
               child: const Text("read pdf")),
         ]),
