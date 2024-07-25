@@ -4,40 +4,48 @@ import 'package:flutter/services.dart';
 import 'package:pdf/widgets.dart';
 import 'package:pdf/pdf.dart';
 import '/save_and_open_pdf.dart';
+import 'dart:typed_data';
+import 'dart:async';
+import 'package:image/image.dart' as img;
 
 class ImagePdfApi {
   static Future<File> generateImagePdf(List<String> _paths) async {
     final pdf = Document();
 
-    final pageTheme = PageTheme(
-      pageFormat: PdfPageFormat.a4,
-      margin: EdgeInsets.only(left: 0, top: 0, right: 0, bottom: 0),
-    );
     for (var path in _paths) {
-      Uint8List image1 = await File(path).readAsBytes();
+      Uint8List imageBytes = await File(path).readAsBytes();
+      final completer = Completer<img.Image>();
+      img.Image? image;
 
-      //dumb way to avoid width or height of the image out of bound
       try {
-        pdf.addPage(
-          MultiPage(
-            pageTheme: pageTheme,
-            build: (context) => [
-              Image(MemoryImage(image1),
-                  width: pageTheme.pageFormat.availableWidth - 1)
-            ],
-          ),
-        );
+        image = img.decodeImage(imageBytes);
+        if (image != null) {
+          completer.complete(image);
+        }
       } catch (e) {
-        pdf.addPage(
-          MultiPage(
-            pageTheme: pageTheme,
-            build: (context) => [
-              Image(MemoryImage(image1),
-                  height: pageTheme.pageFormat.availableHeight - 1)
-            ],
-          ),
-        );
+        print('Error decoding image: $e');
       }
+
+      final loadedImage = await completer.future;
+      final imageWidth = loadedImage.width.toDouble();
+      final imageHeight = loadedImage.height.toDouble();
+
+      final pdfPageFormat = PdfPageFormat(imageWidth, imageHeight);
+
+      pdf.addPage(
+        Page(
+          pageFormat: pdfPageFormat,
+          build: (Context context) {
+            return Center(
+              child: Image(
+                MemoryImage(imageBytes),
+                width: imageWidth,
+                height: imageHeight,
+              ),
+            );
+          },
+        ),
+      );
     }
 
     return SaveAndOpenDocument.savePdf(name: 'image_pdf.pdf', pdf: pdf);
