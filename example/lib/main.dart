@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:pdf/widgets.dart' as pw;
-
 import 'image_pdf_api.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'web_page.dart';
+import 'new_page.dart';
+import 'home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,52 +21,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<String> _pictures = [];
-
-  final pdf = pw.Document();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {}
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Plugin example app'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          ElevatedButton(
-              onPressed: onPressed, child: const Text("Add Pictures")),
-          for (var picture in _pictures) Image.file(File(picture)),
-          for (var picture in _pictures) Text(picture),
-          ElevatedButton(
-              onPressed: () async {
-                final imagePdf = await ImagePdfApi.generateImagePdf(_pictures);
-              },
-              child: const Text("read pdf")),
-        ]),
-      ),
-    ));
-  }
-
-  void onPressed() async {
-    List<String> pictures;
-    try {
-      pictures = await CunningDocumentScanner.getPictures() ?? [];
-      if (!mounted) return;
-      setState(() {
-        _pictures = pictures;
-      });
-    } catch (exception) {
-      // Handle exception here
-    }
+      home: HomePage(),
+    );
   }
 }
