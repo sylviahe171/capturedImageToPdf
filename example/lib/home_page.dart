@@ -4,9 +4,7 @@ import 'dart:async';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'image_pdf_api.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'web_page.dart';
-import 'new_page.dart';
 
 //check why cannot navigate material app!!!!!!!!!
 class HomePage extends StatefulWidget {
