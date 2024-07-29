@@ -39,7 +39,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   pdf: ^3.11.0
   webview_flutter: ^4.8.0
-
+  webview_flutter_android: ^3.16.5
+  webview_flutter_platform_interface: ^2.10.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
