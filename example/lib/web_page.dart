@@ -18,6 +18,25 @@ class _WebViewContainerState extends State<WebViewContainer> {
   late final WebViewController controller;
   final File pdf;
 
+  String autoFillJavaScript = '''
+  document.querySelector("input[type=\'file\']").click();
+
+  function changeReactInputValue(inputDom,newText){
+	  let lastValue = inputDom.value;
+	  inputDom.value = newText;
+	  let event = new Event('input', { bubbles: true });
+	  event.simulated = true;
+	  let tracker = inputDom._valueTracker;
+	  if (tracker) {
+  	  tracker.setValue(lastValue);
+	  }
+	  inputDom.dispatchEvent(event);
+  }
+
+  var userIdDom = document.getElementById("dd2bd7d8-4274-42b8-b7b7-6a3bc527ca47");
+  changeReactInputValue(userIdDom,'username');
+''';
+
   _WebViewContainerState(this.pdf);
 
   @override
@@ -64,10 +83,9 @@ class _WebViewContainerState extends State<WebViewContainer> {
         ),
         body: WebViewWidget(controller: controller),
         floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.import_export),
+            child: Text("Autofill"),
             onPressed: () async {
-              controller.runJavaScript(
-                  'document.getElementById("dd2bd7d8-4274-42b8-b7b7-6a3bc527ca47").value = "New Value";');
+              controller.runJavaScript(autoFillJavaScript);
             }));
   }
 }

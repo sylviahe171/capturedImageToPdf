@@ -37,14 +37,15 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(children: [
           ElevatedButton(
-              onPressed: onPressed, child: const Text("Add Pictures")),
+              onPressed: onPressed,
+              child: const Text("1. Take and Select Pictures")),
           for (var picture in _pictures) Image.file(File(picture)),
           for (var picture in _pictures) Text(picture),
           ElevatedButton(
               onPressed: () async {
                 imagePdf = await ImagePdfApi.generateImagePdf(_pictures);
               },
-              child: const Text("read pdf")),
+              child: const Text("2. Generate Pdf")),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                           )),
                 );
               },
-              child: const Text("submit form")),
+              child: const Text("3. Submit Form")),
         ]),
       ),
     );
