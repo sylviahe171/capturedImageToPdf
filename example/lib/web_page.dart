@@ -18,8 +18,11 @@ class _WebViewContainerState extends State<WebViewContainer> {
   late final WebViewController controller;
   final File pdf;
 
+//issue with file upload: user have to manually touch anywhere of the page, and then auto file upload works
+//why???
+//document.querySelector('button[aria-label="Register"]').click(); code for automating register
   String autoFillJavaScript = '''
-  document.querySelector("input[type=\'file\']").click();
+  document.querySelector('.sc-6663af1f-1.gvjUuC').click();
 
   function changeReactInputValue(inputDom,newText){
 	  let lastValue = inputDom.value;
@@ -35,6 +38,9 @@ class _WebViewContainerState extends State<WebViewContainer> {
 
   var userIdDom = document.getElementById("dd2bd7d8-4274-42b8-b7b7-6a3bc527ca47");
   changeReactInputValue(userIdDom,'username');
+
+  setTimeout(function(){document.querySelector('button[aria-label="Register"]').click();}, 5000);
+
 ''';
 
   _WebViewContainerState(this.pdf);
