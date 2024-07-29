@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   List<String> _pictures = [];
+  late final File imagePdf;
 
   final pdf = pw.Document();
 
@@ -41,14 +42,17 @@ class _HomePageState extends State<HomePage> {
           for (var picture in _pictures) Text(picture),
           ElevatedButton(
               onPressed: () async {
-                final imagePdf = await ImagePdfApi.generateImagePdf(_pictures);
+                imagePdf = await ImagePdfApi.generateImagePdf(_pictures);
               },
               child: const Text("read pdf")),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => WebViewContainer()),
+                  MaterialPageRoute(
+                      builder: (context) => WebViewContainer(
+                            pdf: imagePdf,
+                          )),
                 );
               },
               child: const Text("submit form")),
