@@ -38,10 +38,43 @@ class _WebViewContainerState extends State<WebViewContainer> {
 
   var userIdDom = document.getElementById("dd2bd7d8-4274-42b8-b7b7-6a3bc527ca47");
   changeReactInputValue(userIdDom,'username');
-
-  setTimeout(function(){document.querySelector('button[aria-label="Register"]').click();}, 5000);
-
 ''';
+
+  String autoFillTextField = '''
+  function changeReactInputValue(inputDom,newText){
+	  let lastValue = inputDom.value;
+	  inputDom.value = newText;
+	  let event = new Event('input', { bubbles: true });
+	  event.simulated = true;
+	  let tracker = inputDom._valueTracker;
+	  if (tracker) {
+  	  tracker.setValue(lastValue);
+	  }
+	  inputDom.dispatchEvent(event);
+  }
+
+  var userIdDom = document.getElementById("dd2bd7d8-4274-42b8-b7b7-6a3bc527ca47");
+  changeReactInputValue(userIdDom,'username');
+  ''';
+
+  String autoFillCheckbox = '''
+  function changeReactCheckboxValue(inputDom, newValue) {
+    let lastChecked = inputDom.checked;
+    inputDom.checked = newValue;
+    let event = new Event('change', { bubbles: true });
+    event.simulated = true;
+    inputDom.dispatchEvent(event);
+    if (lastChecked !== newValue) {
+        let clickEvent = new MouseEvent('click', { bubbles: true });
+        clickEvent.simulated = true;
+        inputDom.dispatchEvent(clickEvent);
+    }
+}
+
+// Example usage
+const checkboxElement = document.getElementById('checkbox_4231cd22-4eb1-48d4-b5e2-a5eb63c45b45');
+changeReactCheckboxValue(checkboxElement, true);
+  ''';
 
   _WebViewContainerState(this.pdf);
 

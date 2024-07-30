@@ -5,6 +5,7 @@ import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'image_pdf_api.dart';
 import 'web_page.dart';
+import 'qr_scanner_page.dart';
 
 //check why cannot navigate material app!!!!!!!!!
 class HomePage extends StatefulWidget {
@@ -56,7 +57,15 @@ class _HomePageState extends State<HomePage> {
                           )),
                 );
               },
-              child: const Text("3. Submit Form")),
+              child: const Text("3. �ύ���ύ����yԇm")),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QRScannerPage()),
+                );
+              },
+              child: const Text("1. Scanner")),
         ]),
       ),
     );
