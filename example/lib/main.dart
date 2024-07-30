@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'pages/home_page.dart';
+import 'theme_constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          fontFamily: 'NotoSansTC',
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xFFC8E6B8)),
+                foregroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xFF396222))),
+          )),
       home: HomePage(),
     );
   }
