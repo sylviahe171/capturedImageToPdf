@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../theme_constants.dart';
 import 'dart:io';
 import 'home_page.dart';
+import 'qr_scanner_page.dart';
 
 import '../theme_constants.dart';
 
@@ -49,7 +50,7 @@ class ToTallyFormPage extends StatelessWidget {
         } else {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => QRScannerPage()),
           );
         }
       },

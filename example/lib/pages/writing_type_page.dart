@@ -3,13 +3,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../theme_constants.dart';
 import 'scan_notice_page.dart';
 import 'to_tally_form_page.dart';
-
+import 'qr_scanner_page.dart';
 
 class WritingTypePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("「巫筆」學生作文繳交平台")),
+        appBar: AppBar(
+          title: Text("「巫筆」學生作文繳交平台"),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              // Custom navigation logic here
+              // For example, navigate to a specific page instead of going back
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => QRScannerPage()));
+            },
+          ),
+        ),
         body: Stack(children: [
           backgroundWidget(),
           Container(

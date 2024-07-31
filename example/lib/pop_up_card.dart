@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'theme_constants.dart';
-import 'pages/home_page.dart';
+import 'pages/writing_type_page.dart';
 import 'pages/qr_scanner_page.dart';
 
 class PopUpCard extends StatelessWidget {
@@ -39,7 +39,7 @@ class PopUpCard extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => WritingTypePage()),
             );
           },
           style: ButtonStyle(
