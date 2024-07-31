@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../image_pdf_api.dart';
-import 'web_page.dart';
+import 'web_pdf_page.dart';
 import 'qr_scanner_page.dart';
 import '../pop_up_card.dart';
 import 'writing_type_page.dart';
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => WebViewContainer(
+                      builder: (context) => WebViewPdfContainer(
                             pdf: imagePdf,
                           )),
                 );

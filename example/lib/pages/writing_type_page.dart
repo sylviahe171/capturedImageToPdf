@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../theme_constants.dart';
+import 'scan_notice_page.dart';
+import 'to_tally_form_page.dart';
 
 class WritingTypePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("「巫筆」學生作文繳交平台")),
-        backgroundColor: Colors.white,
         body: Container(
             padding: EdgeInsets.all(25),
             child: Column(children: [
@@ -17,15 +18,31 @@ class WritingTypePage extends StatelessWidget {
               Text("选择适用的文章类型",
                   style: TextStyle(fontSize: 14, color: Color(0xFF9095A1))),
               SizedBox(height: 65),
-              writingTypeCard(
-                  "手寫字", "轻松掃描写作原稿纸", 'assets/icons/attribution-pen.svg'),
+              writingTypeCard("手寫字", "轻松掃描写作原稿纸",
+                  'assets/icons/attribution-pen.svg', true, context),
               SizedBox(height: 27),
-              writingTypeCard("電腦字", "输入或复制粘贴文章", 'assets/icons/computer.svg')
+              writingTypeCard("電腦字", "输入或复制粘贴文章", 'assets/icons/computer.svg',
+                  false, context)
             ])));
   }
 
-  Container writingTypeCard(String title, String description, String iconName) {
-    return Container(
+  GestureDetector writingTypeCard(String title, String description,
+      String iconName, bool isHandWriting, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (isHandWriting) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ScanNoticePage()),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ToTallyFormPage()),
+          );
+        }
+      },
+      child: Container(
         width: 330,
         height: 110,
         padding: EdgeInsets.only(left: 45, right: 45, top: 25, bottom: 25),
@@ -57,6 +74,8 @@ class WritingTypePage extends StatelessWidget {
                   style: TextStyle(fontSize: 14, color: Color(0xFF9095A1)))
             ],
           ),
-        ]));
+        ]),
+      ),
+    );
   }
 }
