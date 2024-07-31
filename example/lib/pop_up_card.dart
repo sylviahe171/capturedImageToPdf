@@ -37,10 +37,11 @@ class PopUpCard extends StatelessWidget {
       SizedBox(height: 10),
       ElevatedButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(context);
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => WritingTypePage()),
-            );
+            ).then((_) {});
           },
           style: ButtonStyle(
             minimumSize: MaterialStateProperty.all(
@@ -64,13 +65,6 @@ class PopUpCard extends StatelessWidget {
       SizedBox(height: 10),
       ElevatedButton(
           onPressed: () {
-            /*
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => QRScannerPage()),
-            );
-            */
-
             Navigator.pop(context);
           },
           style: ButtonStyle(

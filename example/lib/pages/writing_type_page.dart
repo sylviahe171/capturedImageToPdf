@@ -4,6 +4,7 @@ import '../theme_constants.dart';
 import 'scan_notice_page.dart';
 import 'to_tally_form_page.dart';
 import 'qr_scanner_page.dart';
+import 'scannerTest.dart';
 
 class WritingTypePage extends StatelessWidget {
   @override
@@ -37,7 +38,17 @@ class WritingTypePage extends StatelessWidget {
                     'assets/icons/attribution-pen.svg', true, context),
                 SizedBox(height: 27),
                 writingTypeCard("電腦字", "输入或复制粘贴文章", 'assets/icons/computer.svg',
-                    false, context)
+                    false, context),
+                // ElevatedButton(
+                //     onPressed: () {
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) =>
+                //                 ScannedBarcodeLabel()),
+                //       );
+                //     },
+                //     child: const Text("文章選擇")),
               ]))
         ]));
   }

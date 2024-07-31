@@ -64,7 +64,6 @@ class _QRScannerPageState extends State<QRScannerPage>
 
         unawaited(cameraController.start());
         return;
-
       case AppLifecycleState.detached:
       case AppLifecycleState.hidden:
       case AppLifecycleState.paused:
@@ -122,13 +121,14 @@ class _QRScannerPageState extends State<QRScannerPage>
 
   void _foundBarcode(BarcodeCapture capture) {
     if (!_screenOpened) {
-      final List<Barcode> barcodes = capture.barcodes;
+      List<Barcode> barcodes = capture.barcodes;
       _screenOpened = true;
       String code = barcodes[0].rawValue ?? "___";
-
+      barcodes = [];
       // Navigate to a new page
       //the result have to contains wechat in it. this is for testing purpose
-      /*if (code.contains("wechat.com")) {
+
+      if (code.contains("wechat.com")) {
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -136,6 +136,8 @@ class _QRScannerPageState extends State<QRScannerPage>
             }).then((_) {
           _screenOpened = false;
         });
+        // Navigator.pushReplacement(context,
+        //     MaterialPageRoute(builder: (context) => WritingTypePage()));
       } else {
         showDialog(
             barrierDismissible: false,
@@ -145,13 +147,13 @@ class _QRScannerPageState extends State<QRScannerPage>
             }).then((_) {
           _screenOpened = false;
         });
-      }
-      */
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => WritingTypePage()),
-      );
+        // if (code.contains("wechat.com")) {
+        //   //for testing purpose, no matter what is scanned, the app will navigate to the next page (writing type page)
+        //   Navigator.pushReplacement(context,
+        //       MaterialPageRoute(builder: (context) => WritingTypePage()));
+        // } else {}
+      }
     }
   }
 }
