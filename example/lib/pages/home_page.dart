@@ -8,6 +8,7 @@ import 'web_pdf_page.dart';
 import 'qr_scanner_page.dart';
 import '../pop_up_card.dart';
 import 'writing_type_page.dart';
+import '../theme_constants.dart';
 
 //check why cannot navigate material app!!!!!!!!!
 class HomePage extends StatefulWidget {
@@ -34,11 +35,48 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Plugin example app'),
+      appBar: AppBar(),
+      body: Stack(
+        children: [
+          backgroundWidget(),
+          SingleChildScrollView(
+              child: Column(children: [
+            SizedBox(height: 60),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => QRScannerPage()),
+                  );
+                },
+                child: const Text("掃二維碼")),
+            SizedBox(height: 60),
+            ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return PopUpCard(true, "anyway");
+                      });
+                },
+                child: const Text("彈窗成功")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WritingTypePage()),
+                  );
+                },
+                child: const Text("文章選擇"))
+          ])), // Your page content goes here
+        ],
       ),
+
+      /*
       body: SingleChildScrollView(
         child: Column(children: [
+          /*
           ElevatedButton(onPressed: onPressed, child: const Text("1. 拍文章照片")),
           for (var picture in _pictures) Image.file(File(picture)),
           for (var picture in _pictures) Text(picture),
@@ -82,16 +120,8 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               child: const Text("彈窗失敗")),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WritingTypePage()),
-                );
-              },
-              child: const Text("文章選擇")),
-        ]),
-      ),
+              */
+              */
     );
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'home_page.dart';
+import '../pop_up_card.dart';
+import '../theme_constants.dart';
 
 class QRScannerPage extends StatefulWidget {
   const QRScannerPage({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("QR Scanner")),
-        backgroundColor: Colors.black.withOpacity(0.5),
+        backgroundColor: Colors.green.withOpacity(0.1),
         body: Container(
             width: double.infinity,
             padding: EdgeInsets.all(16),
@@ -28,7 +30,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                    Text("將二維碼置於框中",
+                    Text("將作文二維碼置於框中",
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -57,12 +59,22 @@ class _QRScannerPageState extends State<QRScannerPage> {
         String code = barcode.rawValue ?? "___";
 
         // Navigate to a new page
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePage(),
-          ),
-        );
+        //the result have to contains wechat in it. this is for testing purpose
+        if (code.contains("wechat.com")) {
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (BuildContext context) {
+                return PopUpCard(true, code);
+              });
+        } else {
+          showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (BuildContext context) {
+                return PopUpCard(false, code);
+              });
+        }
 
         _screenOpened = true;
       }

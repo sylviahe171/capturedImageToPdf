@@ -5,6 +5,8 @@ import '../theme_constants.dart';
 import 'dart:io';
 import 'home_page.dart';
 
+import '../theme_constants.dart';
+
 class ToTallyFormPdfPage extends StatelessWidget {
   final File filePdf;
 
@@ -14,21 +16,26 @@ class ToTallyFormPdfPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("作文提交")),
-        body: Container(
-            padding: EdgeInsets.all(25),
-            child: Column(children: [
-              Text("手寫作文提交",
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600)),
-              SizedBox(height: 25),
-              Text("前往填寫個人信息",
-                  style: TextStyle(fontSize: 14, color: Color(0xFF9095A1))),
-              SizedBox(height: 65),
-              writingTypeCard(
-                  "作文提交", "最後一步：填寫表格", 'assets/icons/form.svg', true, context),
-              SizedBox(height: 27),
-              writingTypeCard("重新掃描作文二維碼", "爲了方便測試，暫時是去目錄",
-                  'assets/icons/form.svg', false, context),
-            ])));
+        body: Stack(children: [
+          backgroundWidget(),
+          Container(
+              padding: EdgeInsets.all(25),
+              child: Column(children: [
+                Text("手寫作文提交",
+                    style:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.w600)),
+                SizedBox(height: 25),
+                Text("手寫作文的電子文檔已保存\n前往“作文提交”以自動上傳作文文檔",
+                    style: TextStyle(fontSize: 14, color: Color(0xFF9095A1)),
+                    textAlign: TextAlign.center),
+                SizedBox(height: 65),
+                writingTypeCard("作文提交", "前往填表並以電子文檔形式提交手寫作文",
+                    'assets/icons/form.svg', true, context),
+                SizedBox(height: 27),
+                writingTypeCard("重新掃描作文二維碼", "爲了方便測試，暫時是去目錄",
+                    'assets/icons/qr.svg', false, context),
+              ]))
+        ]));
   }
 
   GestureDetector writingTypeCard(String title, String description,

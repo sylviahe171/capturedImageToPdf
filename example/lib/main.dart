@@ -19,11 +19,14 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
-          primaryColor: Colors.white,
           fontFamily: 'NotoSansTC',
           appBarTheme: AppBarTheme(
-            color: Colors.white,
-          ),
+              centerTitle: true,
+              color: Colors.white,
+              titleTextStyle: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black)),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
                 backgroundColor:
