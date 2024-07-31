@@ -19,71 +19,6 @@ class _QRScannerPageState extends State<QRScannerPage>
   MobileScannerController cameraController = MobileScannerController(
       detectionSpeed: DetectionSpeed.normal, returnImage: true);
 
-  StreamSubscription<Object>? _subscription;
-  Barcode? _barcode;
-
-  @override
-  void initState() {
-    super.initState();
-    // Start listening to lifecycle changes.
-    WidgetsBinding.instance.addObserver(this);
-
-    // Start listening to the barcode events.
-    _subscription = cameraController.barcodes.listen(_handleBarcode);
-
-    // Finally, start the scanner itself.
-    unawaited(cameraController.start());
-  }
-
-  @override
-  Future<void> dispose() async {
-    // Stop listening to lifecycle changes.
-    WidgetsBinding.instance.removeObserver(this);
-    // Stop listening to the barcode events.
-    unawaited(_subscription?.cancel());
-    _subscription = null;
-    // Dispose the widget itself.
-    super.dispose();
-    // Finally, dispose of the controller.
-    await cameraController.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // If the controller is not ready, do not try to start or stop it.
-    // Permission dialogs can trigger lifecycle changes before the controller is ready.
-    if (!cameraController.value.isInitialized) {
-      return;
-    }
-
-    switch (state) {
-      case AppLifecycleState.resumed:
-        // Restart the scanner when the app is resumed.
-        // Don't forget to resume listening to the barcode events.
-        _subscription = cameraController.barcodes.listen(_handleBarcode);
-
-        unawaited(cameraController.start());
-        return;
-      case AppLifecycleState.detached:
-      case AppLifecycleState.hidden:
-      case AppLifecycleState.paused:
-      case AppLifecycleState.inactive:
-        // Stop the scanner when the app is paused.
-        // Also stop the barcode events subscription.
-        unawaited(_subscription?.cancel());
-        _subscription = null;
-        unawaited(cameraController.stop());
-    }
-  }
-
-  void _handleBarcode(BarcodeCapture barcodes) {
-    if (mounted) {
-      setState(() {
-        _barcode = barcodes.barcodes.firstOrNull;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,8 +60,6 @@ class _QRScannerPageState extends State<QRScannerPage>
       _screenOpened = true;
       String code = barcodes[0].rawValue ?? "___";
       barcodes = [];
-      // Navigate to a new page
-      //the result have to contains wechat in it. this is for testing purpose
 
       if (code.contains("wechat.com")) {
         showDialog(
@@ -136,8 +69,6 @@ class _QRScannerPageState extends State<QRScannerPage>
             }).then((_) {
           _screenOpened = false;
         });
-        // Navigator.pushReplacement(context,
-        //     MaterialPageRoute(builder: (context) => WritingTypePage()));
       } else {
         showDialog(
             barrierDismissible: false,
@@ -147,12 +78,6 @@ class _QRScannerPageState extends State<QRScannerPage>
             }).then((_) {
           _screenOpened = false;
         });
-
-        // if (code.contains("wechat.com")) {
-        //   //for testing purpose, no matter what is scanned, the app will navigate to the next page (writing type page)
-        //   Navigator.pushReplacement(context,
-        //       MaterialPageRoute(builder: (context) => WritingTypePage()));
-        // } else {}
       }
     }
   }
