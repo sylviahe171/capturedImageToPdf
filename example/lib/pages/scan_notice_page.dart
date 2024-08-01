@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
-
+import 'dart:io';
 import '../theme_constants.dart';
 import 'generate_pdf_page.dart';
+import '../image_pdf_api.dart';
 
 class ScanNoticePage extends StatefulWidget {
   String websiteLink;
@@ -13,6 +14,8 @@ class ScanNoticePage extends StatefulWidget {
 }
 
 class _ScanNoticePageState extends State<ScanNoticePage> {
+  late File imagePdf;
+
   List<String> scannedPictures = [];
   @override
   Widget build(BuildContext context) {
@@ -71,11 +74,13 @@ class _ScanNoticePageState extends State<ScanNoticePage> {
       });
 
       // Navigate to AnotherPage after executing the above operations
+      imagePdf = await ImagePdfApi.generateImagePdf(scannedPictures);
+
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => GeneratePdfPage(widget.websiteLink,
-                generatedPictures: scannedPictures)),
+            builder: (context) =>
+                GeneratePdfPage(widget.websiteLink, generatedPdf: imagePdf)),
       );
     } catch (exception) {
       // Handle exception here

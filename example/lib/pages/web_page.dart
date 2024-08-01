@@ -52,9 +52,7 @@ class _WebPageState extends State<WebPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("webview container"),
-      ),
+      appBar: AppBar(),
       body: WebViewWidget(controller: controller),
     );
   }

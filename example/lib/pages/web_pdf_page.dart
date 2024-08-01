@@ -118,9 +118,7 @@ changeReactCheckboxValue(checkboxElement, true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("webview container"),
-        ),
+        appBar: AppBar(),
         body: WebViewWidget(controller: controller),
         floatingActionButton: FloatingActionButton(
             child: Text("Autofill"),
