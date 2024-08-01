@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           fontFamily: 'NotoSansTC',
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
               centerTitle: true,
               color: Colors.white,
               titleTextStyle: TextStyle(
@@ -29,11 +29,11 @@ class _MyAppState extends State<MyApp> {
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xFFC8E6B8)),
+                    MaterialStateProperty.all<Color>(const Color(0xFF9CD396)),
                 foregroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xFF396222))),
+                    MaterialStateProperty.all<Color>(const Color(0xFF264554))),
           )),
-      home: QRScannerPage(),
+      home: const QRScannerPage(),
     );
   }
 }

@@ -18,15 +18,15 @@ class _QRScannerPageState extends State<QRScannerPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("QR Scanner"), leading: Container()),
+        appBar: AppBar(title: const Text("作文二維碼掃描"), leading: Container()),
         backgroundColor: Colors.green.withOpacity(0.1),
         body: Container(
             width: double.infinity,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(children: [
               Expanded(
                   child: Container(
-                      child: Column(
+                      child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                     Text("將作文二維碼置於框中",

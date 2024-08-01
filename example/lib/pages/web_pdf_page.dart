@@ -108,14 +108,6 @@ changeReactCheckboxValue(checkboxElement, true);
     final file = pdf;
 
     return [file.uri.toString()];
-
-/*
-    if (result != null && result.files.single.path != null) {
-      return [file.uri.toString()];
-    }
-    
-    return [];
-    */
   }
 
   @override
