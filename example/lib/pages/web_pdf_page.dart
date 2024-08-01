@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
-import 'package:file_picker/file_picker.dart';
-import 'home_page.dart';
 
 class WebViewPdfContainer extends StatefulWidget {
   final File pdf;
-  const WebViewPdfContainer({Key? key, required this.pdf}) : super(key: key);
+  String websiteLink;
+  WebViewPdfContainer(this.websiteLink, {Key? key, required this.pdf})
+      : super(key: key);
 
   @override
   _WebViewPdfContainerState createState() => _WebViewPdfContainerState(pdf);
@@ -82,7 +82,8 @@ changeReactCheckboxValue(checkboxElement, true);
   void initState() {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('https://tally.so/r/3qP8lO'));
+      ..loadRequest(Uri.parse(
+          'https://student.mo-but.com/?key=ea27c933-6f55-4678-b610-055b0910792d'));
     //run below listener to overide webview's setonshowfileselector
     addFileSelectionListener();
     super.initState();

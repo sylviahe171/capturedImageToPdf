@@ -1,14 +1,13 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
-import 'package:pdf/widgets.dart' as pw;
-import '../image_pdf_api.dart';
 
 import '../theme_constants.dart';
 import 'generate_pdf_page.dart';
 
 class ScanNoticePage extends StatefulWidget {
+  String websiteLink;
+  ScanNoticePage(this.websiteLink, {super.key});
+
   @override
   State<ScanNoticePage> createState() => _ScanNoticePageState();
 }
@@ -18,7 +17,7 @@ class _ScanNoticePageState extends State<ScanNoticePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("test")),
+        appBar: AppBar(),
         body: Stack(children: [
           backgroundWidget(),
           Container(
@@ -75,8 +74,8 @@ class _ScanNoticePageState extends State<ScanNoticePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                GeneratePdfPage(generatedPictures: scannedPictures)),
+            builder: (context) => GeneratePdfPage(widget.websiteLink,
+                generatedPictures: scannedPictures)),
       );
     } catch (exception) {
       // Handle exception here

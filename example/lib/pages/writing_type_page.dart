@@ -4,9 +4,11 @@ import '../theme_constants.dart';
 import 'scan_notice_page.dart';
 import 'to_tally_form_page.dart';
 import 'qr_scanner_page.dart';
-import 'scannerTest.dart';
 
 class WritingTypePage extends StatelessWidget {
+  String websiteLink;
+  WritingTypePage(this.websiteLink, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,12 +62,12 @@ class WritingTypePage extends StatelessWidget {
         if (isHandWriting) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ScanNoticePage()),
+            MaterialPageRoute(builder: (context) => ScanNoticePage(websiteLink)),
           );
         } else {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ToTallyFormPage()),
+            MaterialPageRoute(builder: (context) => ToTallyFormPage(websiteLink)),
           );
         }
       },

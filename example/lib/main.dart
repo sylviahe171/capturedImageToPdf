@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
-import 'theme_constants.dart';
 import 'pages/qr_scanner_page.dart';
 
 void main() {

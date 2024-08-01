@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'web_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../theme_constants.dart';
-import 'dart:io';
-import 'home_page.dart';
 import 'qr_scanner_page.dart';
 
-import '../theme_constants.dart';
-
 class ToTallyFormPage extends StatelessWidget {
-  ToTallyFormPage({Key? key}) : super(key: key);
+  String websiteLink;
+  ToTallyFormPage(this.websiteLink, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +42,8 @@ class ToTallyFormPage extends StatelessWidget {
         if (toTally) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => WebViewContainer()),
+            MaterialPageRoute(
+                builder: (context) => WebPage(websiteLink)),
           );
         } else {
           Navigator.push(

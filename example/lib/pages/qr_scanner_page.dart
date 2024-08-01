@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'home_page.dart';
 import '../pop_up_card.dart';
-import '../theme_constants.dart';
-import 'dart:async';
-import 'writing_type_page.dart';
 
 class QRScannerPage extends StatefulWidget {
   const QRScannerPage({Key? key}) : super(key: key);
@@ -61,7 +57,7 @@ class _QRScannerPageState extends State<QRScannerPage>
       String code = barcodes[0].rawValue ?? "___";
       barcodes = [];
 
-      if (code.contains("wechat.com")) {
+      if (code.contains("student.mo-but.com")) {
         showDialog(
             context: context,
             builder: (BuildContext context) {

@@ -40,7 +40,7 @@ class PopUpCard extends StatelessWidget {
             Navigator.pop(context);
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => WritingTypePage()),
+              MaterialPageRoute(builder: (context) => WritingTypePage(qrCode)),
             ).then((_) {});
           },
           style: ButtonStyle(

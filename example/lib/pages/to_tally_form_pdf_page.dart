@@ -3,16 +3,13 @@ import 'web_pdf_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../theme_constants.dart';
 import 'dart:io';
-import 'home_page.dart';
-
 import 'qr_scanner_page.dart';
-
-import '../theme_constants.dart';
 
 class ToTallyFormPdfPage extends StatelessWidget {
   final File filePdf;
-
-  ToTallyFormPdfPage(this.filePdf, {Key? key}) : super(key: key);
+  String websiteLink;
+  ToTallyFormPdfPage(this.websiteLink, this.filePdf, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +45,7 @@ class ToTallyFormPdfPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => WebViewPdfContainer(
+                builder: (context) => WebViewPdfContainer(websiteLink,
                       pdf: filePdf,
                     )),
           );

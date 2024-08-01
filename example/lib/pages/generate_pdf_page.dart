@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
-import 'package:pdf/widgets.dart' as pw;
 import '../image_pdf_api.dart';
 import 'to_tally_form_pdf_page.dart';
 
@@ -10,8 +9,9 @@ import '../theme_constants.dart';
 
 class GeneratePdfPage extends StatefulWidget {
   List<String> generatedPictures;
+  String websiteLink;
 
-  GeneratePdfPage({required this.generatedPictures, Key? key})
+  GeneratePdfPage(this.websiteLink, {required this.generatedPictures, Key? key})
       : super(key: key);
   @override
   _GeneratePdfPageState createState() => _GeneratePdfPageState();
@@ -62,6 +62,7 @@ class _GeneratePdfPageState extends State<GeneratePdfPage> {
                       style:
                           TextStyle(fontWeight: FontWeight.w400, fontSize: 18)),
                 ),
+                SizedBox(height: 25),
                 ElevatedButton(
                   onPressed: () async {
                     imagePdf = await ImagePdfApi.generateImagePdf(
@@ -70,7 +71,7 @@ class _GeneratePdfPageState extends State<GeneratePdfPage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                ToTallyFormPdfPage(imagePdf)));
+                                ToTallyFormPdfPage(widget.websiteLink, imagePdf)));
                   },
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(
@@ -97,8 +98,8 @@ class _GeneratePdfPageState extends State<GeneratePdfPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                GeneratePdfPage(generatedPictures: widget.generatedPictures)),
+            builder: (context) => GeneratePdfPage(widget.websiteLink,
+                generatedPictures: widget.generatedPictures)),
       );
     } catch (exception) {
       // Handle exception here
