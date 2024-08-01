@@ -15,7 +15,7 @@ class PopUpCard extends StatelessWidget {
     return Dialog(
         child: Container(
             width: 350,
-            height: 350,
+            height: 340,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
@@ -34,7 +34,6 @@ class PopUpCard extends StatelessWidget {
       const SizedBox(height: 15),
       const Text("識別成功!",
           style: TextStyle(fontSize: 22, color: Color(0xFF171A1F))),
-      Text(qrCode),
       const SizedBox(height: 10),
       ElevatedButton(
           onPressed: () {
@@ -61,10 +60,9 @@ class PopUpCard extends StatelessWidget {
       const Text("識別失敗!",
           style: TextStyle(fontSize: 22, color: Color(0xFF171A1F))),
       const SizedBox(height: 15),
-      Text(qrCode),
       const Text("請將盡頭正對二維碼並重新掃描",
           style: TextStyle(fontSize: 14, color: Color(0xFF9095A1))),
-      const SizedBox(height: 10),
+      const SizedBox(height: 30),
       ElevatedButton(
           onPressed: () {
             Navigator.pop(context);

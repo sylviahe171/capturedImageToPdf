@@ -24,18 +24,6 @@ dependencies:
   open_filex: ^4.4.0
   chinese_font_library: ^1.2.0
 
-
-
-
-  cunning_document_scanner:
-    # When depending on this package from a real application you should use:
-    #   cunning_document_scanner: ^x.y.z
-    # See https://dart.dev/tools/pub/dependencies#version-constraints
-    # The example app is bundled with the plugin so we use a path dependency on
-    # the parent directory to use the current plugin's version.
-    path: ../
-    version: 1.2.3
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -45,6 +33,8 @@ dependencies:
   webview_flutter_android: ^3.16.5
   webview_flutter_platform_interface: ^2.10.0
   syncfusion_flutter_pdfviewer: ^26.2.7
+  file_picker: ^8.0.6
+  cunning_document_scanner: ^1.2.3
 
 dev_dependencies:
   flutter_test:
