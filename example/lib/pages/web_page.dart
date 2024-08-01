@@ -23,8 +23,11 @@ class _WebPageState extends State<WebPage> {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(Uri.parse(widget.websiteLink));
+
     //run below listener to overide webview's setonshowfileselector
     addFileSelectionListener();
+    controller.clearCache();
+    controller.clearLocalStorage();
     super.initState();
   }
 
@@ -52,7 +55,17 @@ class _WebPageState extends State<WebPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            controller.clearCache();
+            controller.clearLocalStorage();
+
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: WebViewWidget(controller: controller),
     );
   }

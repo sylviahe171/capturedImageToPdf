@@ -86,6 +86,9 @@ changeReactCheckboxValue(checkboxElement, true);
           'https://student.mo-but.com/?key=ea27c933-6f55-4678-b610-055b0910792d'));
     //run below listener to overide webview's setonshowfileselector
     addFileSelectionListener();
+
+    controller.clearCache();
+    controller.clearLocalStorage();
     super.initState();
   }
 
@@ -118,7 +121,17 @@ changeReactCheckboxValue(checkboxElement, true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              controller.clearCache();
+              controller.clearLocalStorage();
+
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
         body: WebViewWidget(controller: controller),
         floatingActionButton: FloatingActionButton(
             child: Text("Autofill"),
