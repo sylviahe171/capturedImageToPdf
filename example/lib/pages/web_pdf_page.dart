@@ -40,6 +40,19 @@ class _WebViewPdfContainerState extends State<WebViewPdfContainer> {
   changeReactInputValue(userIdDom,'username');
 ''';
 
+  String autoUploadJavaScript = '''
+  document.querySelector('.sc-6663af1f-1.gWsJwX').click();
+
+  document.addEventListener('DOMContentLoaded', function () {
+    
+    document.querySelector('button').addEventListener('click', int)
+});
+  
+function int() {
+    console.log('calling');
+    document.querySelector('.sc-6663af1f-1.gWsJwX').click();
+}
+''';
   String autoFillTextField = '''
   function changeReactInputValue(inputDom,newText){
 	  let lastValue = inputDom.value;
@@ -128,7 +141,7 @@ changeReactCheckboxValue(checkboxElement, true);
         floatingActionButton: FloatingActionButton(
             child: Text("Autofill"),
             onPressed: () async {
-              controller.runJavaScript(autoFillJavaScript);
+              controller.runJavaScript(autoUploadJavaScript);
             }));
   }
 }

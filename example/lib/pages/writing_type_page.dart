@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../theme_constants.dart';
 import 'scan_notice_page.dart';
-import 'to_tally_form_page.dart';
+import 'web_page.dart';
 import 'qr_scanner_page.dart';
 
 class WritingTypePage extends StatelessWidget {
@@ -61,14 +61,11 @@ class WritingTypePage extends StatelessWidget {
         } else {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => ToTallyFormPage(websiteLink)),
+            MaterialPageRoute(builder: (context) => WebPage(websiteLink)),
           );
         }
       },
       child: cardContentLayout(iconName, title, description),
     );
   }
-
-  
 }

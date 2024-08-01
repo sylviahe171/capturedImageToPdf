@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../pop_up_card.dart';
 
+import 'writing_type_page.dart';
+
 class QRScannerPage extends StatefulWidget {
   const QRScannerPage({Key? key}) : super(key: key);
 
@@ -58,16 +60,20 @@ class _QRScannerPageState extends State<QRScannerPage>
       barcodes = [];
 
       if (code.contains("student.mo-but.com")) {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return PopUpCard(true, code);
-            }).then((_) {
-          _screenOpened = false;
-        });
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => WritingTypePage(code)),
+        ).then((_) {});
+
+        // showDialog(
+        //     context: context,
+        //     builder: (BuildContext context) {
+        //       return PopUpCard(true, code);
+        //     }).then((_) {
+        //   _screenOpened = false;
+        // });
       } else {
         showDialog(
-            barrierDismissible: false,
             context: context,
             builder: (BuildContext context) {
               return PopUpCard(false, code);

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'to_tally_form_pdf_page.dart';
+import 'web_pdf_page.dart';
 import '../theme_constants.dart';
 
 class GeneratePdfPage extends StatefulWidget {
@@ -50,30 +50,29 @@ class _GeneratePdfPageState extends State<GeneratePdfPage> {
             bottom: 40,
             left: 30,
             right: 30,
-            child: Container(
-                width: 200,
-                child: nextStepButton(context)),
+            child: Container(width: 200, child: nextStepButton(context)),
           )
         ]));
   }
 
   ElevatedButton nextStepButton(BuildContext context) {
     return ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ToTallyFormPdfPage(
-                            widget.websiteLink, widget.generatedPdf)),
-                  );
-                },
-                style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(const Size(
-                      200, 45)), // Set width and height of the button
-                ),
-                child: const Text("下一步",
-                    style:
-                        TextStyle(fontWeight: FontWeight.w400, fontSize: 18)),
-              );
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => WebViewPdfContainer(
+                    widget.websiteLink,
+                    pdf: widget.generatedPdf,
+                  )),
+        );
+      },
+      style: ButtonStyle(
+        minimumSize: MaterialStateProperty.all(
+            const Size(200, 45)), // Set width and height of the button
+      ),
+      child: const Text("下一步",
+          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18)),
+    );
   }
 }
