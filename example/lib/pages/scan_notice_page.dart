@@ -73,15 +73,18 @@ class _ScanNoticePageState extends State<ScanNoticePage> {
         scannedPictures = picturesCollected;
       });
 
-      // Navigate to AnotherPage after executing the above operations
-      imagePdf = await ImagePdfApi.generateImagePdf(scannedPictures);
+      if (scannedPictures.isNotEmpty) {
+        // Navigate to AnotherPage after executing the above operations
+        imagePdf = await ImagePdfApi.generateImagePdf(scannedPictures);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                GeneratePdfPage(widget.websiteLink, generatedPdf: imagePdf)),
-      );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => GeneratePdfPage(
+                  widget.websiteLink, scannedPictures,
+                  generatedPdf: imagePdf)),
+        );
+      }
     } catch (exception) {
       // Handle exception here
     }
