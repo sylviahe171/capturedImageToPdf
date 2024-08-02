@@ -59,7 +59,7 @@ class _QRScannerPageState extends State<QRScannerPage>
       String code = barcodes[0].rawValue ?? "___";
       barcodes = [];
 
-      if (code.contains("student.mo-but.com")) {
+      if (code.contains("mo-but")) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => WritingTypePage(code)),
